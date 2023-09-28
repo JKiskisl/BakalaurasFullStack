@@ -1,0 +1,48 @@
+#whyus {
+  background-color: var(--color-bg);
+  padding: 40px;
+  text-align: center;
+}
+
+.reviews-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Added this line */
+}
+
+.review-set {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 20px; /* Added this line */
+}
+
+.review {
+  max-width: 350px;
+  background-color: var(--color-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.review h3 {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.review p {
+  font-size: 16px;
+  color: white;
+  line-height: 1.5;
+}

@@ -1,0 +1,87 @@
+.team__container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.team__item {
+  background: var(--color-bg-variant);
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  position: relative;
+}
+
+.team__item:hover {
+  border-color: var(--color-primary-variant);
+  background: transparent;
+}
+
+.team__item-image {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.team__item h3 {
+  margin: 1.2rem 0 2rem;
+}
+
+.team__item-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.team__item-image:hover > img {
+  filter: blur(5px);
+}
+
+.team__item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.team__item-image:hover .team__item-overlay {
+  opacity: 1;
+}
+
+.team__item-overlay h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.team__item-overlay a {
+  color: var(--color-primary-variant);
+  font-size: 1rem;
+}
+
+.team__item-overlay a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+  .team__container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .team__container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

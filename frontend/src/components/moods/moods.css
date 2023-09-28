@@ -1,0 +1,221 @@
+/* moods.css */
+.moods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.mood {
+  display: flex;
+  border: 1px solid var(--color-primary);
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--color-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mood__content {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mood__title {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.mood__email {
+  font-style: italic;
+  color: var(--color-white);
+  margin-top: 5px;
+}
+
+.mood__delete {
+  background-color: #dc3545; /* Red background color */
+  color: #fff; /* White text color */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.mood__delete svg {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+
+.mood__edit {
+  background-color: #038303;
+  color: #fff; /* White text color */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.mood__edit svg {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+.mood-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.mood-form input,
+.mood-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+}
+
+.mood-form button {
+  padding: 8px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mood-form input[type="date"],
+.mood-form select,
+.mood-form input[type="number"],
+.mood-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 999;
+  width: 100%;
+  max-width: 400px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.popup-buttons button {
+  padding: 8px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.add-mood-button {
+  background: var(--color-bg-variant);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: -1600px;
+}
+
+.add-mood-button:hover {
+  background: transparent;
+  border-color: var(--color-primary-variant);
+  cursor: default;
+}
+
+.mood-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.mood-table th,
+.mood-table td {
+  border: 1px solid var(--color-primary);
+  padding: 8px;
+  text-align: center;
+}
+
+.mood-table th {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.mood-table td:nth-child(3),
+.mood-table td:nth-child(4) {
+  width: 10%;
+}
+
+.edit-button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.edit-button:hover {
+  background-color: #c46309;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
