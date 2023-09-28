@@ -99,6 +99,41 @@ async def read_root() -> dict:
     return {"message": "Welcome to your backend!"}
 
 
+#lamaGPT
+LLAMAGPT_URI = "http://localhost:3001/v1/completions"
+
+class LLamaGPTRequest(BaseModel):
+    prompt: str
+    stop: list[str]
+
+async def generate_llamagpt_response(input_text: str) -> str:
+    llama_gpt_request_data = {
+        "prompt": f"\n\n### Instructions:\n{input_text}\n\n### Response:\n",
+        "stop": ["\n", "###"]
+    }
+
+    async with httpx.AsyncClient() as client:
+        response = await client.post(LLAMAGPT_URI, json=llama_gpt_request_data, timeout=30)
+        if response.status_code == 200:
+            response_data = response.json()
+            # Extract the generated text
+            generated_text = response_data.get("choices", [{}])[0].get("text", "")
+            if generated_text:
+                return generated_text
+            else:
+                return "No generated text found in LLamaGPT response"
+        else:
+            return f"LlamaGPT request failed with status code {response.status_code}"
+
+
+@app.post("/generate-ai-response", dependencies=[Depends(JWTBearer())], tags=["ai"])
+async def generate_ai_response(input_text: str, email: str = Depends(get_current_email)) -> dict:
+    generated_response = await generate_llamagpt_response(input_text)
+    
+    return {"generated_response": generated_response}
+#End of llamagpt
+
+
 @app.get("/posts", dependencies=[Depends(JWTBearer())], tags=["posts"])
 async def get_user_posts(email: str = Depends(get_current_email)) -> dict:
     print(email)
