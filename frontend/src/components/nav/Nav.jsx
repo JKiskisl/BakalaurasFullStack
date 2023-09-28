@@ -95,6 +95,9 @@ const Nav = () => {
               <Link to="/moods">My moods</Link>
             </li>
             <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
               <a href="#" onClick={handleLogout}>
                 Log out
               </a>

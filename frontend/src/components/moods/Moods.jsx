@@ -97,7 +97,7 @@ const Moods = () => {
 
   useEffect(() => {
     let isMounted = true;
-
+    console.log("useeffect tirggered");
     const getMoodsData = async () => {
       try {
         const accessToken = await getTokenFromLocalStorage();
@@ -138,7 +138,10 @@ const Moods = () => {
 
       if (response.error === null) {
         // Update the state to remove the deleted mood
+        console.log("Before setMoods:", moods); // Debugging
+
         setMoods((prevMoods) => prevMoods.filter((mood) => mood.id !== moodId));
+        console.log("After setMoods:", moods); // Debugging
         setErrorMessage("");
       } else {
         setErrorMessage(response.error);
@@ -149,7 +152,7 @@ const Moods = () => {
   };
 
   const handleAddMood = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const title = event.target.title.value;
     const content = event.target.content.value;

@@ -10,10 +10,11 @@ from passlib.context import CryptContext
 from app.auth.auth_handler import decodeJWT, refreshJWT, expireJWT
 import jwt
 from fastapi.middleware.cors import CORSMiddleware
-
+from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from app.custom_json_encoder import CustomJSONEncoder
 import json
+import httpx
 from bson.json_util import dumps
 
 client = MongoClient("mongodb://localhost:27017/")

@@ -22,3 +22,5 @@ test:
 getmoodbyID
 
 updateMOOD
+
+# after adding a mood, useeffect triggers 2 times, making it send GET request 2 times.

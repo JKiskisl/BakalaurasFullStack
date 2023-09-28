@@ -13,6 +13,7 @@ import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import Moods from "./components/moods/Moods";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./components/profile/Profile";
 import "./index.css";
 import { isAuthenticated } from "./services/auth.service";
 
@@ -27,6 +28,10 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/moods" element={<ProtectedRoute element={Moods} />} />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute element={Profile} />}
+          />
         </Routes>
         <Footer />
       </div>
