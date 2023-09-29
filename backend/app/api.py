@@ -109,9 +109,9 @@ class LLamaGPTRequest(BaseModel):
 
 async def generate_llamagpt_response(input_text: str) -> str:
     llama_gpt_request_data = {
-        "systemPrompt": "You are a helpful and friendly AI assistant. Respond in clear and coherent English.",
+        "systemPrompt": "You are a helpful and friendly AI assistant. Respond in clear and coherent English, no other languages.",
         "prompt": input_text,
-        "max_tokens": 450,  # Adjust as needed to control response length
+        "max_tokens": 1000,  # Adjust as needed to control response length
         "temperature": 0.7,  # You can adjust this for more or less randomness
         "top_p": 0.9,  # Higher values for more focused responses (e.g., 0.9)
         "mirostat_mode": 0,  # Disable Mirostat constant-perplexity algorithm
