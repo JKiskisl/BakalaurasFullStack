@@ -1,4 +1,4 @@
 # BakalaurasFullStack
 
 FullStack web application
-with LLAMAGPT
+with LLAMAGPT assistant
