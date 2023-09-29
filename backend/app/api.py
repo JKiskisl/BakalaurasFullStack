@@ -109,22 +109,42 @@ class LLamaGPTRequest(BaseModel):
 
 async def generate_llamagpt_response(input_text: str) -> str:
     llama_gpt_request_data = {
-        "prompt": f"\n\n### Instructions:\n{input_text}\n\n### Response:\n",
-        "stop": ["\n", "###"]
+        "systemPrompt": "You are a helpful and friendly AI assistant. Respond in clear and coherent English.",
+        "prompt": input_text,
+        "max_tokens": 450,  # Adjust as needed to control response length
+        "temperature": 0.7,  # You can adjust this for more or less randomness
+        "top_p": 0.9,  # Higher values for more focused responses (e.g., 0.9)
+        "mirostat_mode": 0,  # Disable Mirostat constant-perplexity algorithm
+        "echo": False,  # Do not echo the prompt in the generated text
+        "stop": None,  # No stop tokens to stop generation
+        "stream": False,  # Do not stream results
+        "logprobs": None,  # Do not include log probabilities
+        "presence_penalty": 0.0,  # No penalty for token presence
+        "frequency_penalty": 0.0,  # No penalty for token frequency
+        "n": 1,  # Generate a single completion
+        "best_of": 1,  # Choose the best completion from 1 attempt
+        "user": None,  # No specific user context
+        "top_k": 50,  # Limit next token selection to the top K most probable tokens
     }
-
     async with httpx.AsyncClient() as client:
-        response = await client.post(LLAMAGPT_URI, json=llama_gpt_request_data, timeout=30)
-        if response.status_code == 200:
-            response_data = response.json()
-            # Extract the generated text
-            generated_text = response_data.get("choices", [{}])[0].get("text", "")
-            if generated_text:
-                return generated_text
-            else:
+        try:
+            response = await client.post(LLAMAGPT_URI, json=llama_gpt_request_data, timeout=300)  # Increase timeout
+            if response.status_code == 200:
+                response_data = response.json()
+                print("llamaGPT response:", response_data)
+                choices = response_data.get("choices", [])
+                if choices:
+                    generated_text = choices[0].get("text", "")  # Extract text from the first choice
+                    if generated_text:
+                        # Replace '\\n' and '\n' with spaces to remove line breaks
+                        cleaned_text = generated_text.replace("\\n", " ").replace("\n", " ")
+                        return cleaned_text
                 return "No generated text found in LLamaGPT response"
-        else:
-            return f"LlamaGPT request failed with status code {response.status_code}"
+            else:
+                return f"LlamaGPT request failed with status code {response.status_code}"
+        except httpx.TimeoutException:
+            return "LlamaGPT response timed out"
+
 
 
 @app.post("/generate-ai-response", dependencies=[Depends(JWTBearer())], tags=["ai"])
